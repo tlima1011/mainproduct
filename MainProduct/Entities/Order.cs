@@ -36,5 +36,15 @@ namespace MainProduct.Entities
         {
             OrderItens.Remove(item);
         }
+
+        public double Total()
+        {
+            double sum = 0.0; 
+            foreach(OrderItem o in OrderItens)
+            {
+                sum += o.subTotal();
+            }
+            return sum; 
+        }
     }
 }
