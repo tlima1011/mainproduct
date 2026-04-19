@@ -17,9 +17,8 @@ namespace MainProduct.Entities
             this.date = DateTime.Now;
         }
 
-        public Order(OrderStatus orderStatus)
+        public Order(OrderStatus orderStatus) : this()
         {
-            this.date = DateTime.Now;
             OrderStatus = orderStatus;
         }
 
