@@ -29,9 +29,9 @@ namespace MainProduct
                 Console.Write("Nome: " );
                 string nameProduct = Console.ReadLine();
                 Console.Write("Quantidade: "); 
-                int quantity = int.Parse(Console.ReadLine(),CultureInfo.InvariantCulture);
+                int quantity = int.Parse(Console.ReadLine());
                 Console.Write("Preço $"); 
-                double price = double.Parse(Console.ReadLine());
+                double price = double.Parse(Console.ReadLine(),CultureInfo.InvariantCulture);
                 Product p = new Product(nameProduct, price);
                 OrderItem o = new OrderItem(quantity, p);
                 newOrder.AddItem(o); 
