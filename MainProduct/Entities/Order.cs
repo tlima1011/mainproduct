@@ -63,7 +63,7 @@ namespace MainProduct.Entities
 
             sb.AppendLine("Order moment: " + date.ToString("dd/MM/yyyy HH:mm"));
             sb.AppendLine("Order status: " +OrderStatus);
-            sb.AppendLine("Client: " +Client);
+            sb.AppendLine("Client: \n" +Client);
             sb.AppendLine("Order Items: "); 
             foreach(OrderItem item in OrderItens)
             {
