@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using MainProduct.Entities.Enums; 
 
@@ -37,6 +38,14 @@ namespace MainProduct.Entities
             OrderItens.Remove(item);
         }
 
+        public void exibirItens()
+        {
+            foreach (OrderItem item in OrderItens)
+            {
+                Console.WriteLine(item.ToString);
+            }
+        }
+
         public double Total()
         {
             double sum = 0.0; 
@@ -45,6 +54,23 @@ namespace MainProduct.Entities
                 sum += o.subTotal();
             }
             return sum; 
+        }
+
+        public override string ToString()
+        {
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("Order moment: " + date.ToString("dd/MM/yyyy HH:mm"));
+            sb.AppendLine("Order status: " +OrderStatus);
+            sb.AppendLine("Client: " +Client);
+            sb.AppendLine("Order Items: "); 
+            foreach(OrderItem item in OrderItens)
+            {
+                sb.AppendLine(item.ToString()); 
+            }
+            sb.AppendLine("Total Price $" + Total().ToString("F2", CultureInfo.InvariantCulture));
+            return sb.ToString();
         }
     }
 }

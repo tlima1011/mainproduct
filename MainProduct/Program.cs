@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using MainProduct.Entities;
 using MainProduct.Entities.Enums;
 
@@ -16,25 +17,27 @@ namespace MainProduct
             Console.Write("Informe data de nascimento (DD / MM / YYYY): "); 
             DateTime birthDate = DateTime.Parse(Console.ReadLine());
             Client client = new Client(name, email, birthDate);
+            Console.Write("Quantos produtos para comprar? "); 
+            int n = int.Parse(Console.ReadLine());
+            Console.Write("Order Status: ");
+            OrderStatus orderStatus = Enum.Parse<OrderStatus>(Console.ReadLine());
+            Order newOrder = new Order(orderStatus, client);
 
-            //OrderStatus orderStatus = Enum.Parse<OrderStatus>(Console.ReadLine());
+            for (int i = 1; i <= n; i++)
+            {
+                Console.Write($"Informe dados do {i}º produto: \n");
+                Console.Write("Nome: " );
+                string nameProduct = Console.ReadLine();
+                Console.Write("Quantidade: "); 
+                int quantity = int.Parse(Console.ReadLine(),CultureInfo.InvariantCulture);
+                Console.Write("Preço $"); 
+                double price = double.Parse(Console.ReadLine());
+                Product p = new Product(nameProduct, price);
+                OrderItem o = new OrderItem(quantity, p);
+                newOrder.AddItem(o); 
+            }
 
-            /*Product product = new Product("TV 75 polegadas", 6500.33);
-            Product product1 = new Product("Notebook Dell Inspiron", 4000); 
-            OrderItem oi = new OrderItem(5, product);
-            OrderItem oi1 = new OrderItem(10, product1); 
-
-            Console.WriteLine(oi);
-            Console.WriteLine(oi1);*/
-
-            //Console.WriteLine(client);
-
-            Console.Write("How Many Products to buy? "); 
-            int n = int.Parse(Console.ReadLine()); 
-
-
-
-
+            Console.WriteLine(newOrder);
 
         }
     }
